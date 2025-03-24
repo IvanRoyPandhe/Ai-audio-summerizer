@@ -1,0 +1,373 @@
+.recording-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a2e 0%, #1a1a3a 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+  
+  /* Animated background effects */
+  .recording-page::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(100, 100, 255, 0.03) 0%,
+      rgba(100, 100, 255, 0.03) 10%,
+      transparent 10%,
+      transparent 50%
+    );
+    animation: backgroundMove 20s linear infinite;
+  }
+  
+  @keyframes backgroundMove {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  .recording-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    z-index: 1;
+  }
+  
+  .recording-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #fff;
+    position: relative;
+  }
+  
+  .recording-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #64b5f6, #2196f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
+  }
+  
+  .recording-header p {
+    font-size: 1.2rem;
+    color: #a0a0ff;
+    opacity: 0.8;
+  }
+  
+  .back-button {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-5px);
+  }
+  
+  .recorder-card {
+    background: rgba(20, 20, 50, 0.8);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 100, 255, 0.2);
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  
+  .card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.1), transparent 70%);
+    pointer-events: none;
+  }
+  
+  .visualization-area {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .audio-visualizer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .visualizer-bar {
+    width: 4px;
+    background: linear-gradient(to top, #2196f3, #64b5f6);
+    border-radius: 2px;
+    animation: barAnimation 0.5s ease infinite;
+  }
+  
+  @keyframes barAnimation {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+  }
+  
+  .ready-state {
+    text-align: center;
+    color: #fff;
+  }
+  
+  .ai-circle-container {
+    margin-bottom: 1rem;
+  }
+  
+  .ai-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(33, 150, 243, 0.5);
+    margin: 0 auto;
+    padding: 8px;
+    animation: pulseCircle 2s infinite;
+  }
+  
+  .ai-circle-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2196f3, #1a237e);
+    animation: glowPulse 2s infinite;
+  }
+  
+  @keyframes pulseCircle {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes glowPulse {
+    0% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(33, 150, 243, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.5); }
+  }
+  
+  .recording-controls {
+    text-align: center;
+  }
+  
+  .recording-time {
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .time-display {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recording-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #f44336;
+    border-radius: 50%;
+    animation: pulseDot 1s infinite;
+  }
+  
+  @keyframes pulseDot {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .record-button {
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(45deg, #2196f3, #1a237e);
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .record-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+  }
+  
+  .record-button.recording {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+    animation: recordingPulse 1s infinite;
+  }
+  
+  @keyframes recordingPulse {
+    0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
+  }
+  
+  .results-card {
+    background: rgba(20, 20, 50, 0.8);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 100, 255, 0.2);
+  }
+  
+  .audio-playback {
+    color: #fff;
+  }
+  
+  .audio-player-container {
+    margin: 1rem 0;
+  }
+  
+  .audio-player {
+    width: 100%;
+    height: 40px;
+  }
+  
+  .recording-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .action-button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .action-button.submit {
+    background: linear-gradient(45deg, #00bcd4, #006064);
+  }
+  
+  .action-button.new {
+    background: linear-gradient(45deg, #4caf50, #1b5e20);
+  }
+  
+  .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .action-button.processing {
+    opacity: 0.8;
+    cursor: wait;
+  }
+  
+  .button-icon {
+    font-size: 1.2rem;
+  }
+  
+  .button-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
+    pointer-events: none;
+  }
+  
+  /* Audio player custom styling */
+  audio::-webkit-media-controls-panel {
+    background: rgba(20, 20, 50, 0.8);
+  }
+  
+  audio::-webkit-media-controls-current-time-display,
+  audio::-webkit-media-controls-time-remaining-display {
+    color: #fff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .recording-page {
+      padding-top: 60px;
+    }
+    
+    .recording-container {
+      padding: 1rem;
+    }
+    
+    .recording-header h1 {
+      font-size: 2rem;
+    }
+    
+    .back-button {
+      left: 1rem;
+    }
+    
+    .recording-actions {
+      flex-direction: column;
+    }
+    
+    .action-button {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .recorder-card {
+      padding: 1rem;
+    }
+    
+    .visualization-area {
+      height: 150px;
+    }
+  }
+  
+  /* Dark mode optimization */
+  @media (prefers-color-scheme: dark) {
+    .recording-page {
+      background: linear-gradient(135deg, #050510 0%, #0a0a1a 100%);
+    }
+    
+    .recorder-card,
+    .results-card {
+      background: rgba(10, 10, 30, 0.9);
+    }
+  }
+  

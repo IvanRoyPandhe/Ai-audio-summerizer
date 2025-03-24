@@ -1,0 +1,210 @@
+.pricing {
+    padding: 6rem 2rem;
+    background: #0A0F1C;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .pricing-header h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+    background: linear-gradient(120deg, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .pricing-header p {
+    color: #94a3b8;
+    font-size: 1.2rem;
+  }
+  
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .pricing-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .pricing-card.popular {
+    background: rgba(99, 102, 241, 0.1);
+    transform: scale(1.05);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+  }
+  
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .plan-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .plan-header h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .plan-price {
+    font-size: 3rem;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+  }
+  
+  .period {
+    font-size: 1rem;
+    color: #94a3b8;
+  }
+  
+  .plan-description {
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+  
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .plan-features li {
+    color: #94a3b8;
+    padding: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .feature-icon {
+    color: #6366f1;
+    font-weight: bold;
+  }
+  
+  .plan-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .plan-button.popular {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  }
+  
+  .plan-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  }
+  
+  .pricing-faq {
+    margin-top: 6rem;
+    text-align: center;
+  }
+  
+  .pricing-faq h3 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .faq-item {
+    text-align: left;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .faq-item h4 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .faq-item p {
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .pricing-card.popular {
+      grid-row: 1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .pricing {
+      padding: 4rem 1rem;
+    }
+  
+    .pricing-header h2 {
+      font-size: 2rem;
+    }
+  
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .pricing-card.popular {
+      transform: scale(1);
+    }
+  
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
