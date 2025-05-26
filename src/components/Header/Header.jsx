@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Add useLocation
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const location = useLocation(); // Add this to track current route
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +35,6 @@ const Header = () => {
             className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
             onClick={() => setActiveSection('home')}
           >
-            <span className="nav-icon">🏠</span>
             Home
           </Link>
          
@@ -44,7 +43,6 @@ const Header = () => {
             className={`nav-link ${activeSection === 'features' ? 'active' : ''}`}
             onClick={() => setActiveSection('features')}
           >
-            <span className="nav-icon">⚡</span>
             Features
           </a>
           <a 
@@ -52,7 +50,6 @@ const Header = () => {
             className={`nav-link ${activeSection === 'how-it-works' ? 'active' : ''}`}
             onClick={() => setActiveSection('how-it-works')}
           >
-            <span className="nav-icon">🔍</span>
             How It Works
           </a>
           <a 
@@ -60,7 +57,6 @@ const Header = () => {
             className={`nav-link ${activeSection === 'pricing' ? 'active' : ''}`}
             onClick={() => setActiveSection('pricing')}
           >
-            <span className="nav-icon">💎</span>
             Pricing
           </a>
           <Link 
@@ -68,17 +64,11 @@ const Header = () => {
             className={`nav-link ${location.pathname === '/history' ? 'active' : ''}`}
             onClick={() => setActiveSection('history')}
           >
-            <span className="nav-icon">📚</span>
             History
           </Link>
         </div>
 
         <div className="nav-actions">
-          <button className="theme-toggle" aria-label="Toggle theme">
-            <div className="toggle-track">
-              <span className="toggle-icon">🌙</span>
-            </div>
-          </button>
           <Link to="/record" className="try-button">
             Try Now
             <span className="button-glow"></span>

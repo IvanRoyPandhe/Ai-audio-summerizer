@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import './Recorder.css';
 
@@ -7,11 +8,11 @@ const Recorder = () => {
   const [audioURL, setAudioURL] = useState('');
   const [recordingTime, setRecordingTime] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [summary, setSummary] = useState(null);
   const [error, setError] = useState(null);
   const mediaRecorder = useRef(null);
   const audioChunks = useRef([]);
   const timerInterval = useRef(null);
+  const navigate = useNavigate();
 
   const startRecording = async () => {
     try {
@@ -27,7 +28,7 @@ const Recorder = () => {
         const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' });
         const audioUrl = URL.createObjectURL(audioBlob);
         setAudioURL(audioUrl);
-        processAudio(audioBlob);
+        processAudio();
         audioChunks.current = [];
       };
 
@@ -52,34 +53,15 @@ const Recorder = () => {
     }
   };
 
-  const processAudio = async (audioBlob) => {
+  const processAudio = () => {
     setIsProcessing(true);
-    setSummary(null);
-    setError(null);
-
-    try {
-      // Create FormData to send the audio file
-      const formData = new FormData();
-      formData.append('audio', audioBlob, 'recording.wav');
-
-      // Send to backend for processing
-      const response = await fetch('YOUR_BACKEND_API_ENDPOINT', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to process audio');
-      }
-
-      const data = await response.json();
-      setSummary(data);
-    } catch (error) {
-      setError('Failed to process audio. Please try again.');
-      console.error('Error processing audio:', error);
-    } finally {
+    
+    // Simulate processing delay
+    setTimeout(() => {
       setIsProcessing(false);
-    }
+      // Navigate to summary results page
+      navigate('/summary');
+    }, 3000);
   };
 
   const formatTime = (seconds) => {
@@ -119,7 +101,6 @@ const Recorder = () => {
               onClick={startRecording}
               disabled={isProcessing}
             >
-              <span className="button-icon">🎤</span>
               Start Recording
             </button>
           ) : (
@@ -127,7 +108,6 @@ const Recorder = () => {
               className="recorder-button stop"
               onClick={stopRecording}
             >
-              <span className="button-icon">⏹</span>
               Stop Recording
             </button>
           )}
@@ -148,34 +128,9 @@ const Recorder = () => {
                 <div className="spinner"></div>
                 <p>Processing your audio...</p>
               </div>
-            ) : summary ? (
-              <div className="summary-content">
-                <div className="summary-main">
-                  <h4>Key Points</h4>
-                  <ul>
-                    {summary.keyPoints.map((point, index) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="summary-details">
-                  <h4>Detailed Summary</h4>
-                  <p>{summary.detailedSummary}</p>
-                </div>
-
-                <div className="summary-actions">
-                  <button className="action-button" onClick={() => {/* Add export logic */}}>
-                    Export as PDF
-                  </button>
-                  <button className="action-button" onClick={() => {/* Add copy logic */}}>
-                    Copy to Clipboard
-                  </button>
-                </div>
-              </div>
             ) : (
               <p className="no-summary">
-                Summary will appear here after processing
+                Processing complete! Redirecting to results...
               </p>
             )}
           </div>

@@ -4,37 +4,31 @@ import './Features.css';
 const Features = () => {
   const features = [
     {
-      icon: '🎯',
       title: 'Smart Summarization',
       description: 'Advanced AI algorithms convert speech to concise, accurate text summaries.',
       highlight: 'Up to 95% accuracy'
     },
     {
-      icon: '⚡',
       title: 'Real-time Processing',
       description: 'Get instant summaries of your recordings with minimal waiting time.',
       highlight: 'Process 1hr in 2 mins'
     },
     {
-      icon: '🔍',
       title: 'Key Points Extraction',
       description: 'Automatically identifies and extracts crucial information from lectures.',
       highlight: 'Smart detection'
     },
     {
-      icon: '📝',
       title: 'Custom Notes',
       description: 'Generate structured notes with headings, bullet points, and highlights.',
       highlight: 'Organized format'
     },
     {
-      icon: '🔄',
       title: 'Multiple Languages',
       description: 'Support for various languages and automatic language detection.',
       highlight: '20+ languages'
     },
     {
-      icon: '💾',
       title: 'Easy Export',
       description: 'Export your summaries in multiple formats including PDF, Word, and Markdown.',
       highlight: 'Universal compatibility'
@@ -52,7 +46,7 @@ const Features = () => {
         <div className="features-grid">
           {features.map((feature, index) => (
             <div className="feature-card" key={index}>
-              <div className="feature-icon">{feature.icon}</div>
+              <div className="feature-number">{index + 1}</div>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
               <span className="feature-highlight">{feature.highlight}</span>

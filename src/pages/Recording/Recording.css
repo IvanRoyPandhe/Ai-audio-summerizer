@@ -1,373 +1,623 @@
+/* Recording Page Styles */
 .recording-page {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0a0a2e 0%, #1a1a3a 100%);
-    position: relative;
-    overflow: hidden;
-    padding-top: 80px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f1c, #1a1f2c);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  top: -200px;
+  right: -200px;
+  z-index: 0;
+  animation: float 10s ease-in-out infinite;
+}
+
+.recording-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.recording-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.back-button:hover {
+  color: white;
+}
+
+.back-icon {
+  font-size: 1.2rem;
+}
+
+.recording-header h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.recording-header p {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.recording-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.recorder-card, .results-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: glow-sweep 3s ease-in-out infinite;
+}
+
+.visualization-area {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ready-state {
+  text-align: center;
+}
+
+.ai-circle-container {
+  margin-bottom: 1rem;
+}
+
+.ai-circle {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.ai-circle-inner {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+}
+
+.ai-circle-inner::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #6366f1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+}
+
+.ready-state p {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.ready-subtitle {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.audio-visualizer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+  width: 100%;
+}
+
+.visualizer-bar {
+  width: 8px;
+  background: linear-gradient(to top, #6366f1, #8b5cf6);
+  border-radius: 4px;
+  animation: audio-wave 0.5s ease-in-out infinite alternate;
+}
+
+.recording-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.recording-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.time-display {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.record-button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.record-button.recording {
+  background: linear-gradient(135deg, #ef4444, #f87171);
+}
+
+.record-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.record-button.recording:hover {
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+}
+
+.button-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  transform: rotate(0deg);
+  animation: glow 3s linear infinite;
+  opacity: 0.5;
+}
+
+.audio-playback {
+  color: white;
+}
+
+.audio-playback h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.audio-player-container {
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.audio-player {
+  width: 100%;
+}
+
+.recording-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.action-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button.submit {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.action-button.new {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+}
+
+.action-button.submit:hover {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.action-button.new:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.action-button.processing {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.action-button.processing .button-icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Summary Result Styles */
+.summary-result-page {
+  min-height: 100vh;
+  background: #0A0F1C;
+  color: #e2e8f0;
+}
+
+.summary-nav {
+  background: rgba(10, 15, 28, 0.95);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.logo-highlight {
+  background: linear-gradient(120deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-left: 2px;
+}
+
+.back-button {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.summary-result-container {
+  background: rgba(20, 25, 40, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 2rem auto;
+  max-width: 1000px;
+  color: #e2e8f0;
+}
+
+.summary-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+}
+
+.summary-header h2 {
+  font-size: 1.8rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.summary-meta {
+  display: flex;
+  gap: 2rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #8b5cf6;
+}
+
+.summary-content {
+  display: grid;
+  gap: 2rem;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+}
+
+.summary-section h3 {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.key-points ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.key-points li {
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  border-left: 3px solid #8b5cf6;
+}
+
+.summary-text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.topics-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.topic-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.topic-name {
+  font-weight: 500;
+}
+
+.topic-bar-container {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.topic-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 4px;
+}
+
+.topic-percentage {
+  position: absolute;
+  right: 0;
+  top: -1.5rem;
+  font-size: 0.8rem;
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.action-button.primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border: none;
+}
+
+.action-button.primary:hover {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  /* Animated background effects */
-  .recording-page::before {
-    content: '';
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(100, 100, 255, 0.03) 0%,
-      rgba(100, 100, 255, 0.03) 10%,
-      transparent 10%,
-      transparent 50%
-    );
-    animation: backgroundMove 20s linear infinite;
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
   }
-  
-  @keyframes backgroundMove {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  .recording-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    z-index: 1;
+}
+
+@keyframes audio-wave {
+  0% {
+    height: 10%;
   }
-  
-  .recording-header {
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #fff;
-    position: relative;
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes glow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .recording-page {
+    padding: 1rem;
   }
   
   .recording-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(90deg, #64b5f6, #2196f3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(33, 150, 243, 0.3);
-  }
-  
-  .recording-header p {
-    font-size: 1.2rem;
-    color: #a0a0ff;
-    opacity: 0.8;
-  }
-  
-  .back-button {
-    position: absolute;
-    left: 2rem;
-    top: 0;
-    color: #fff;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    z-index: 2;
-  }
-  
-  .back-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(-5px);
-  }
-  
-  .recorder-card {
-    background: rgba(20, 20, 50, 0.8);
-    border-radius: 20px;
-    padding: 2rem;
-    position: relative;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(100, 100, 255, 0.2);
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-  
-  .card-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.1), transparent 70%);
-    pointer-events: none;
-  }
-  
-  .visualization-area {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-  
-  .audio-visualizer {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    height: 100px;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .visualizer-bar {
-    width: 4px;
-    background: linear-gradient(to top, #2196f3, #64b5f6);
-    border-radius: 2px;
-    animation: barAnimation 0.5s ease infinite;
-  }
-  
-  @keyframes barAnimation {
-    0%, 100% { transform: scaleY(0.5); }
-    50% { transform: scaleY(1); }
-  }
-  
-  .ready-state {
-    text-align: center;
-    color: #fff;
-  }
-  
-  .ai-circle-container {
-    margin-bottom: 1rem;
-  }
-  
-  .ai-circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid rgba(33, 150, 243, 0.5);
-    margin: 0 auto;
-    padding: 8px;
-    animation: pulseCircle 2s infinite;
-  }
-  
-  .ai-circle-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #2196f3, #1a237e);
-    animation: glowPulse 2s infinite;
-  }
-  
-  @keyframes pulseCircle {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  @keyframes glowPulse {
-    0% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.5); }
-    50% { box-shadow: 0 0 40px rgba(33, 150, 243, 0.8); }
-    100% { box-shadow: 0 0 20px rgba(33, 150, 243, 0.5); }
-  }
-  
-  .recording-controls {
-    text-align: center;
-  }
-  
-  .recording-time {
-    margin-bottom: 1rem;
-    color: #fff;
-  }
-  
-  .time-display {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .recording-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .pulse-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #f44336;
-    border-radius: 50%;
-    animation: pulseDot 1s infinite;
-  }
-  
-  @keyframes pulseDot {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  
-  .record-button {
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    border: none;
-    background: linear-gradient(45deg, #2196f3, #1a237e);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .record-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
-  }
-  
-  .record-button.recording {
-    background: linear-gradient(45deg, #f44336, #d32f2f);
-    animation: recordingPulse 1s infinite;
-  }
-  
-  @keyframes recordingPulse {
-    0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(244, 67, 54, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
-  }
-  
-  .results-card {
-    background: rgba(20, 20, 50, 0.8);
-    border-radius: 20px;
-    padding: 2rem;
-    position: relative;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(100, 100, 255, 0.2);
-  }
-  
-  .audio-playback {
-    color: #fff;
-  }
-  
-  .audio-player-container {
-    margin: 1rem 0;
-  }
-  
-  .audio-player {
-    width: 100%;
-    height: 40px;
+    font-size: 2rem;
   }
   
   .recording-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
+    flex-direction: column;
   }
   
   .action-button {
-    padding: 0.8rem 1.5rem;
-    border-radius: 20px;
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-  }
-  
-  .action-button.submit {
-    background: linear-gradient(45deg, #00bcd4, #006064);
-  }
-  
-  .action-button.new {
-    background: linear-gradient(45deg, #4caf50, #1b5e20);
-  }
-  
-  .action-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  .action-button.processing {
-    opacity: 0.8;
-    cursor: wait;
-  }
-  
-  .button-icon {
-    font-size: 1.2rem;
-  }
-  
-  .button-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent 70%);
-    pointer-events: none;
   }
   
-  /* Audio player custom styling */
-  audio::-webkit-media-controls-panel {
-    background: rgba(20, 20, 50, 0.8);
+  .summary-meta {
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
-  audio::-webkit-media-controls-current-time-display,
-  audio::-webkit-media-controls-time-remaining-display {
-    color: #fff;
+  .summary-actions {
+    justify-content: center;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .recording-page {
-      padding-top: 60px;
-    }
-    
-    .recording-container {
-      padding: 1rem;
-    }
-    
-    .recording-header h1 {
-      font-size: 2rem;
-    }
-    
-    .back-button {
-      left: 1rem;
-    }
-    
-    .recording-actions {
-      flex-direction: column;
-    }
-    
-    .action-button {
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .recorder-card {
-      padding: 1rem;
-    }
-    
-    .visualization-area {
-      height: 150px;
-    }
-  }
-  
-  /* Dark mode optimization */
-  @media (prefers-color-scheme: dark) {
-    .recording-page {
-      background: linear-gradient(135deg, #050510 0%, #0a0a1a 100%);
-    }
-    
-    .recorder-card,
-    .results-card {
-      background: rgba(10, 10, 30, 0.9);
-    }
-  }
-  
+}

@@ -6,26 +6,22 @@ const HowItWorks = () => {
     {
       number: '01',
       title: 'Record Your Audio',
-      description: 'Use our high-quality audio recorder to capture your lectures or study sessions.',
-      icon: '🎤'
+      description: 'Use our high-quality audio recorder to capture your lectures or study sessions.'
     },
     {
       number: '02',
       title: 'AI Processing',
-      description: 'Our advanced AI analyzes your audio, converting speech to text and identifying key points.',
-      icon: '🤖'
+      description: 'Our advanced AI analyzes your audio, converting speech to text and identifying key points.'
     },
     {
       number: '03',
       title: 'Smart Summary',
-      description: 'Get an organized summary with main topics, key points, and important details.',
-      icon: '📝'
+      description: 'Get an organized summary with main topics, key points, and important details.'
     },
     {
       number: '04',
       title: 'Export & Share',
-      description: 'Download your summary in various formats or share directly with your study group.',
-      icon: '📤'
+      description: 'Download your summary in various formats or share directly with your study group.'
     }
   ];
 
@@ -41,7 +37,6 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <div className="step-card" key={index}>
               <div className="step-number">{step.number}</div>
-              <div className="step-icon">{step.icon}</div>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
               <div className="step-connector">
@@ -58,15 +53,11 @@ const HowItWorks = () => {
             <h3>See It In Action</h3>
             <p>Watch how AudioAI transforms a lecture into organized notes</p>
             <button className="demo-button">
-              <span className="play-icon">▶</span>
               Watch Demo
             </button>
           </div>
           <div className="demo-video">
-            {/* Replace with actual video/animation component */}
-            <div className="video-placeholder">
-              <span className="play-overlay">▶</span>
-            </div>
+            <div className="video-placeholder"></div>
           </div>
         </div>
       </div>
