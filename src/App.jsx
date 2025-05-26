@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import Recording from './pages/Recording/Recording';
 import History from './pages/History/History';
 import Login from './components/Login/Login';
+import Welcome from './components/Welcome/Welcome';
 import './App.css';
 
 const Home = () => (
@@ -22,9 +23,14 @@ const Home = () => (
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
 
   const handleLogin = (username) => {
     setUser({ username });
+  };
+
+  const handleContinue = () => {
+    setShowLogin(true);
   };
 
   return (
@@ -43,7 +49,11 @@ const App = () => {
           </>
         ) : (
           <Routes>
-            <Route path="*" element={<Login onLogin={handleLogin} />} />
+            <Route path="*" element={
+              showLogin ? 
+              <Login onLogin={handleLogin} /> : 
+              <Welcome onContinue={handleContinue} />
+            } />
           </Routes>
         )}
       </div>
